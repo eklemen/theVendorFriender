@@ -4,6 +4,7 @@ import SafariView from "react-native-safari-view";
 
 export default class HomeScreen extends React.Component {
   componentDidMount() {
+    console.log('login');
     Linking.addEventListener('url', this._handleOpenURL);
   }
 
@@ -11,46 +12,24 @@ export default class HomeScreen extends React.Component {
     Linking.removeEventListener('url', this._handleOpenURL);
   }
 
-  _handleOpenURL(event) {
-    console.log('event=====', event);
-    // SafariView.isAvailable()
-    //   .then(
-    //     SafariView.show({
-    //       url: 'http://localhost:8080/auth/instagram?provider=instagram',
-    //       fromBottom: true
-    //     })
-    //   )
-    //   .catch(error => {
-    //     // Fallback WebView code for iOS 8 and earlier
-    //   });
-    // // Linking.addEventListener('url', (r) => {
-    // //   console.log('response.......', r);
-    // // })
-    // SafariView.show({
-    //   url: 'http://localhost:8080/auth/instagram?provider=instagram',
-    //   fromBottom: true
-    // });
-    // Linking.addEventListener('url', this.handleUrl)
-  }
-  // handleUrl = (event) => {
-  //   console.log('event from handleUrl', event);
-  //   //remove listener here as it makes sense rather than doing it in component
-  //   Linking.removeEventListener('url', this.handleUrl);
-  //
-  //   SafariView.dismiss();
-  //
-  // }
-  _logMeIn = (e) => {
-    Linking.canOpenURL('http://localhost:8080/auth/instagram?provider=instagram')
-      .then(supported => {
-        if (supported) {
-          return Linking.openURL('http://localhost:8080/auth/instagram?provider=instagram');
-        } else {
-          console.error('Failed to open URI:', 'http://localhost:8080/auth/instagram?provider=instagram');
-        }
-      })
+  _handleOpenURL = async e => {
+    console.log('event=====', e);
+    const code = e.url.split('=')[1];
+    await 
+    await SafariView.dismiss();
+  };
+
+  _logMeIn = () => {
+    SafariView.isAvailable()
+      .then(
+        SafariView.show({
+          url: 'http://localhost:8080/auth/instagram?provider=instagram',
+          fromBottom: true
+        })
+      )
       .catch(error => {
-        console.error(error);
+        // Fallback WebView code for iOS 8 and earlier
+        console.log(error);
       });
   };
 
