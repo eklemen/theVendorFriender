@@ -1,6 +1,9 @@
 import React from 'react';
-import {View, Text} from 'react-native';
 import {createStackNavigator} from 'react-navigation';
+/* Remove deprication warning */
+import { YellowBox } from 'react-native'
+YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated']);
+/* */
 import Home from './Login/Home';
 import Login from './Login/Login';
 
