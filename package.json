@@ -18,9 +18,17 @@
     "preset": "react-native"
   },
   "dependencies": {
+    "axios": "^0.18.0",
+    "axios-redux": "^1.0.4",
+    "babel-preset-env": "^1.7.0",
+    "compdata": "^1.0.2",
     "react": "16.3.1",
     "react-native": "~0.55.2",
     "react-native-safari-view": "^2.1.0",
-    "react-navigation": "^2.3.1"
+    "react-navigation": "^2.3.1",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0"
   }
 }
