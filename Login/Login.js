@@ -14,26 +14,20 @@ class Login extends React.Component {
     Linking.removeEventListener('url', this._handleOpenURL);
   }
 
-  _handleOpenURL = async (e) => {
+  _handleOpenURL = (e) => {
     const code = e.url.split('=')[1];
-    const {navigation, getToken} = this.props;
-    try {
-      const token = await getToken(code);
-      console.log('TOKEN', token);
-      SafariView.dismiss();
-    } catch (err) {
-      console.log(err);
-    }
+    SafariView.dismiss();
+    // const {navigation, getToken} = this.props;
     // console.log('code', code);
-    // navigation.navigate('AuthUser', {code});
-    // this.props.getToken(code).then(res => {
+    // // navigation.navigate('AuthUser', {code});
+    // getToken(code).then(res => {
     //   console.log('RES ', res);
     // }).catch(err => {
     //   console.log(err);
     // })
   };
 
-  _logMeIn = async () => {
+  _logMeIn = () => {
     SafariView.isAvailable()
       .then(
         SafariView.show({
@@ -50,7 +44,7 @@ class Login extends React.Component {
   render() {
     return (
       <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-        <Button title='Login' onPress={() => this._logMeIn().done()}/>
+        <Button title='Login' onPress={this._logMeIn}/>
         <Text>Hi</Text>
       </View>
     );

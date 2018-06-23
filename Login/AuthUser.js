@@ -9,16 +9,16 @@ import {getToken} from '../services/UserService';
 
 class AuthUser extends Component {
 
-  async componentDidMount() {
+  componentDidMount() {
     const {navigation, getToken} = this.props;
-    const code = navigation.getParam('code');
-    const token = await getToken(code);
-    console.log('TOKEN', token);
-    // getToken(code).then(res => {
-    //   console.log('RES ', res);
-    // }).catch(err => {
-    //   console.log(err);
-    // })
+    const code = navigation.getParam('code', '');
+    // const token = await getToken(code);
+    // console.log('TOKEN', token);
+    getToken(code).then(res => {
+      console.log('RES ', res);
+    }).catch(err => {
+      console.log(err);
+    })
   }
 
   render() {

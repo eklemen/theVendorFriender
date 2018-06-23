@@ -6,10 +6,11 @@ YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated']);
 /* */
 import Home from './Login/Home';
 import Login from './Login/Login';
+import AuthUser from './Login/AuthUser';
 
 export default createStackNavigator({
-    Home: {
-      screen: Home,
+    AuthUser: {
+      screen: AuthUser,
       path: 'auth/callback',
     },
     Login,
