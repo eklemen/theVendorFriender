@@ -1,11 +1,12 @@
 import axios from 'axios';
 
 // axios.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('vendrToken');
-const Query = (
+
+export const Query = (
   {
     name, // required
     endpoint,
-    reqObject = {},
+    reqObject,
     params = {},
     headers = {},
     method = 'get',
@@ -13,9 +14,11 @@ const Query = (
     ...rest
   }
 ) => {
-  if (typeof name !== 'string') throw new Error('Must provide a `name` for this query.');
   return dispatch => {
-    dispatch({type: `QUERY_PENDING_${name}`, payload: {name: name}});
+    if (typeof name !== 'string') {
+      throw new Error('Must provide a `name` for this query.');
+    }
+    dispatch({type: `QUERY_PENDING_${name}`, payload: {name}});
     return axios({
       method: method,
       url: endpoint,
@@ -26,8 +29,7 @@ const Query = (
         ...headers
       },
       ...rest
-    }).then(
-      res => {
+    }).then(res => {
         if (!saveToStore) {
           return dispatch({
             type: `QUERY_FULFILLED_${name}_NO_SAVE`,
@@ -42,17 +44,14 @@ const Query = (
           }
         })
       },
-      err => (
-        dispatch({
+      err => {
+        return dispatch({
           type: `QUERY_REJECTED_${name}`,
           payload: {
             data: err,
-            name: name
+            name
           }
         })
-      )
-    );
+      })
   }
 };
-
-export default Query;

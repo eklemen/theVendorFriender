@@ -4,21 +4,22 @@ import {
   StyleSheet,
   View,
   Text,
+  AsyncStorage,
 } from 'react-native';
 import {getToken} from '../services/UserService';
 
 class AuthUser extends Component {
 
-  componentDidMount() {
+  async componentDidMount() {
     const {navigation, getToken} = this.props;
     const code = navigation.getParam('code', '');
-    // const token = await getToken(code);
-    // console.log('TOKEN', token);
-    getToken(code).then(res => {
-      console.log('RES ', res);
-    }).catch(err => {
+    try {
+      const res = await getToken(code);
+      const {token} = res.payload.data;
+      await AsyncStorage.setItem('@vendorToken', token);
+    } catch (err) {
       console.log(err);
-    })
+    }
   }
 
   render() {
