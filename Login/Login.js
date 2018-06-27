@@ -1,6 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {View, Text, StyleSheet, Button, Linking} from 'react-native';
+import {StyleSheet, Button, Linking} from 'react-native';
+import {Container, Header, Content, Body, Title} from 'native-base';
+import {Col, Row, Grid} from 'react-native-easy-grid';
 import SafariView from 'react-native-safari-view';
 import {getTokenFromCode} from '../services/UserService';
 
@@ -34,10 +36,14 @@ class Login extends React.Component {
 
   render() {
     return (
-      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-        <Button title='Login' onPress={this._logMeIn}/>
-        <Text>Hi</Text>
-      </View>
+      <Content>
+        <Grid>
+          <Row style={{backgroundColor: '#635DB7', height: 200}}>Hi</Row>
+          <Row style={{backgroundColor: '#00CE9F', height: 200}}>
+            <Button title='Login' onPress={this._logMeIn}/>
+          </Row>
+        </Grid>
+      </Content>
     );
   }
 }
@@ -49,12 +55,7 @@ const actions = {
 export default connect(null, actions)(Login);
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'stretch'
-  },
-  text: {
-    fontSize: 24,
-    marginBottom: 18
+  title: {
+    alignItems: 'flex-end'
   }
 });

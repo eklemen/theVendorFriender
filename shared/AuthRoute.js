@@ -26,11 +26,14 @@ class AuthRoute extends Component {
       const token = await getToken();
       if (!token) {
         this.setState({signedIn: false, checkedSignIn: true});
-        // NavigationActions.navigate('Login');
       } else if (!this.props.user) {
+        console.log('nouser');
         axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
         await this.props.getSelf();
-        this.setState({signedIn: true, checkedSignIn: true})
+        await this.setState({signedIn: true, checkedSignIn: true})
+      } else {
+        console.log('user and token');
+        await this.setState({signedIn: true, checkedSignIn: true})
       }
     } catch (err) {
       console.log('err authroute------------\n\r', err);
@@ -70,4 +73,4 @@ const styles = StyleSheet.create({
 export const setToken = (token) => AsyncStorage.setItem('@vendorToken', token);
 export const getToken = () => AsyncStorage.getItem('@vendorToken');
 
-export const onSignOut = (token) => AsyncStorage.removeItem('@vendorToken');
+export const onSignOut = () => AsyncStorage.removeItem('@vendorToken');

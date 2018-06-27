@@ -7,6 +7,7 @@ YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated']);
 import Home from './Login/Home';
 import Login from './Login/Login';
 import AuthUser from './Login/AuthUser';
+import Logout from './shared/Logout';
 
 const SignedOut = createStackNavigator({
     AuthUser: {
@@ -17,9 +18,14 @@ const SignedOut = createStackNavigator({
   },
   {
     initialRouteName: 'Login',
+    headerMode: 'none'
   });
 const SignedIn = createStackNavigator({
-  Home
+  Home: {
+    screen: Home,
+    title: 'Home'
+  },
+  Logout
 });
 
 export const createRootNavigator = (signedIn = false) => {
@@ -29,11 +35,11 @@ export const createRootNavigator = (signedIn = false) => {
         screen: SignedIn
       },
       SignedOut: {
-        screen: SignedOut
+        screen: SignedOut,
       }
     },
     {
-      initialRouteName: signedIn ? "SignedIn" : "SignedOut"
+      initialRouteName: signedIn ? "SignedIn" : "SignedOut",
     }
   );
 };

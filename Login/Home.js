@@ -7,7 +7,9 @@ export default class Home extends React.Component {
     return (
       <View>
         <Text>Home Screen</Text>
-        <Button onPress={()=>{console.log('f yeah')}} title='Go Back'/>
+        <Button
+          onPress={()=>{this.props.navigation.navigate('Logout')}}
+          title='Go Back'/>
       </View>
     );
   }
