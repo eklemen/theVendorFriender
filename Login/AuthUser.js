@@ -6,7 +6,8 @@ import {
   Text,
   AsyncStorage,
 } from 'react-native';
-import {getToken} from '../services/UserService';
+import {getTokenFromCode} from '../services/UserService';
+import {setToken} from '../shared/AuthRoute';
 
 class AuthUser extends Component {
 
@@ -16,7 +17,7 @@ class AuthUser extends Component {
     try {
       const res = await getToken(code);
       const {token} = res.payload.data;
-      await AsyncStorage.setItem('@vendorToken', token);
+      await setToken(token)
     } catch (err) {
       console.log(err);
     }
@@ -32,7 +33,7 @@ class AuthUser extends Component {
 }
 
 const actions = {
-  getToken
+  getToken: getTokenFromCode
 };
 
 export default connect(

@@ -10,7 +10,7 @@ export function getMyEventsList() {
   });
 }
 
-export const getToken = code => {
+export const getTokenFromCode = code => {
   const endpoint = `${api.getToken}?code=${code}`;
   return Query({
     endpoint,
@@ -18,13 +18,13 @@ export const getToken = code => {
   });
 };
 
-export function getSelf() {
+export const getSelf = () => {
   const endpoint = api.self;
   return Query({
     endpoint,
     name: 'User'
   })
-}
+};
 
 export function addContact(uuid) {
   const endpoint = api.userContacts(uuid);

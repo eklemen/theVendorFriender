@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {View, Text, StyleSheet, Button, Linking} from 'react-native';
 import SafariView from 'react-native-safari-view';
-import {getToken} from '../services/UserService';
+import {getTokenFromCode} from '../services/UserService';
 
 class Login extends React.Component {
   componentDidMount() {
@@ -14,17 +14,8 @@ class Login extends React.Component {
     Linking.removeEventListener('url', this._handleOpenURL);
   }
 
-  _handleOpenURL = (e) => {
-    const code = e.url.split('=')[1];
+  _handleOpenURL = () => {
     SafariView.dismiss();
-    // const {navigation, getToken} = this.props;
-    // console.log('code', code);
-    // // navigation.navigate('AuthUser', {code});
-    // getToken(code).then(res => {
-    //   console.log('RES ', res);
-    // }).catch(err => {
-    //   console.log(err);
-    // })
   };
 
   _logMeIn = () => {
@@ -52,7 +43,7 @@ class Login extends React.Component {
 }
 
 const actions = {
-  getToken
+  getToken: getTokenFromCode
 };
 
 export default connect(null, actions)(Login);

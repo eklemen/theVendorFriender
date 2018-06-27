@@ -1,6 +1,7 @@
 import axios from 'axios';
+import {getToken} from '../AuthRoute';
 
-// axios.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('vendrToken');
+// axios.defaults.headers.common['Authorization'] = 'Bearer ' + getToken();
 
 export const Query = (
   {

@@ -2,7 +2,8 @@ import React from 'react';
 import {Provider} from 'react-redux';
 import store from './store';
 import {StyleSheet, View} from 'react-native';
-import Routes from './Routes';
+// import Routes from './Routes';
+import AuthRoute from './shared/AuthRoute';
 
 export default class App extends React.Component {
 
@@ -10,7 +11,7 @@ export default class App extends React.Component {
     return (
       <Provider store={store}>
         <View style={styles.container}>
-          <Routes/>
+          <AuthRoute />
         </View>
       </Provider>
     );

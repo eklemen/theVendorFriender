@@ -1,13 +1,13 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, Button} from 'react-native';
 
 export default class Home extends React.Component {
   render() {
     console.log('heres home');
-    console.log('nav', this.props.navigation.getParam('code', 'foo'));
     return (
-      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+      <View>
         <Text>Home Screen</Text>
+        <Button onPress={()=>{console.log('f yeah')}} title='Go Back'/>
       </View>
     );
   }
