@@ -26,13 +26,9 @@ class AuthRoute extends Component {
       const token = await getToken();
       if (!token) {
         this.setState({signedIn: false, checkedSignIn: true});
-      } else if (!this.props.user) {
-        console.log('nouser');
+      } else {
         axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
         await this.props.getSelf();
-        await this.setState({signedIn: true, checkedSignIn: true})
-      } else {
-        console.log('user and token');
         await this.setState({signedIn: true, checkedSignIn: true})
       }
     } catch (err) {

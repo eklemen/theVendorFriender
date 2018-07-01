@@ -1,8 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {StyleSheet, Button, Linking} from 'react-native';
-import {Container, Header, Content, Body, Title} from 'native-base';
-import {Col, Row, Grid} from 'react-native-easy-grid';
+import {StyleSheet, Linking} from 'react-native';
+import {Button, Content, Icon, Text} from 'native-base';
+import {Row, Grid} from 'react-native-easy-grid';
 import SafariView from 'react-native-safari-view';
 import {getTokenFromCode} from '../services/UserService';
 
@@ -36,14 +36,16 @@ class Login extends React.Component {
 
   render() {
     return (
-      <Content>
-        <Grid>
-          <Row style={{backgroundColor: '#635DB7', height: 200}}>Hi</Row>
-          <Row style={{backgroundColor: '#00CE9F', height: 200}}>
-            <Button title='Login' onPress={this._logMeIn}/>
-          </Row>
-        </Grid>
-      </Content>
+      <Grid>
+        <Row style={{alignItems: 'center'}}>
+          <Content padder>
+            <Button light block large iconLeft onPress={this._logMeIn}>
+              <Icon type='FontAwesome' name='instagram'/>
+              <Text>Login with Instagram</Text>
+            </Button>
+          </Content>
+        </Row>
+      </Grid>
     );
   }
 }

@@ -14,7 +14,6 @@ class AuthUser extends Component {
   async componentDidMount() {
     const {navigation, getToken} = this.props;
     const code = navigation.getParam('code', '');
-    console.log('code------------\n\r', code);
     try {
       const res = await getToken(code);
       const {token} = res.payload.data;
