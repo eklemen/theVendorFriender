@@ -71,7 +71,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		MyUjX7WQoBxKuJQGUK/wpXW516Q=
+		26jxIy4mlJ29r/WJ6UfIXhI081s=
 		</data>
 		<key>Ionicons.ttf</key>
 		<data>
@@ -79,7 +79,7 @@
 		</data>
 		<key>MaterialCommunityIcons.ttf</key>
 		<data>
-		qsYaaEAlreJgw0cwmpP4T0ugnSE=
+		LlRFFQPKQ8n7uDUD5LZhbhx4DRE=
 		</data>
 		<key>MaterialIcons.ttf</key>
 		<data>
@@ -87,7 +87,7 @@
 		</data>
 		<key>Octicons.ttf</key>
 		<data>
-		43wPh5FmspBv+00q8kJl9AIbRBc=
+		XF4wYBlFFw56fAqk3ggmUtwnNQI=
 		</data>
 		<key>PkgInfo</key>
 		<data>
@@ -111,7 +111,15 @@
 		</data>
 		<key>PlugIns/vendorFriender2Tests.xctest/vendorFriender2Tests</key>
 		<data>
-		WbVMWf0y1ISKUpZ1BCyqWX6dQbQ=
+		JG+BPD1xJGHVZYZ+cmjtKwIHN3s=
+		</data>
+		<key>Roboto.ttf</key>
+		<data>
+		HR1B/K3Fcd7LZEQhG3mTuZzpJuI=
+		</data>
+		<key>Roboto_medium.ttf</key>
+		<data>
+		rbw73kJLz328OPFIAFyDGYJYkfI=
 		</data>
 		<key>SimpleLineIcons.ttf</key>
 		<data>
@@ -120,6 +128,10 @@
 		<key>Zocial.ttf</key>
 		<data>
 		C9pZx7zT05J94EfgkYdaRCi/0as=
+		</data>
+		<key>rubicon-icon-font.ttf</key>
+		<data>
+		wWjJGa/hGKWVqUjSz9izW6v2ekU=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -306,11 +318,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			qsYaaEAlreJgw0cwmpP4T0ugnSE=
+			LlRFFQPKQ8n7uDUD5LZhbhx4DRE=
 			</data>
 			<key>hash2</key>
 			<data>
-			q9ds9276vErG0wDQjAHtvPQadpxhrJDfPQ8UGJDid2g=
+			hvzI5Ll2LOfABnIPjqOG8YBKGtVVv2xJ+8XfCHVI35c=
 			</data>
 		</dict>
 		<key>MaterialIcons.ttf</key>
@@ -328,11 +340,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			43wPh5FmspBv+00q8kJl9AIbRBc=
+			XF4wYBlFFw56fAqk3ggmUtwnNQI=
 			</data>
 			<key>hash2</key>
 			<data>
-			IDC914RgQrcm7e1pDO4UjqugvZKBAae3xLoaLztAPMg=
+			sw1aNDI0CqTWoFwAl/BoysSnzVrJqfoRSzi3y6/KJCM=
 			</data>
 		</dict>
 		<key>PlugIns/vendorFriender2Tests.xctest.dSYM/Contents/Info.plist</key>
@@ -383,11 +395,33 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			WbVMWf0y1ISKUpZ1BCyqWX6dQbQ=
+			JG+BPD1xJGHVZYZ+cmjtKwIHN3s=
 			</data>
 			<key>hash2</key>
 			<data>
-			0gT9C42RJQ8Xxw29DwHjN+JjxZRUQiWmHYHkHKHvgFQ=
+			EIKbfic92+xDlXmX8mZxIj7rCoZdSsdu4rmk4IDM+zw=
+			</data>
+		</dict>
+		<key>Roboto.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			HR1B/K3Fcd7LZEQhG3mTuZzpJuI=
+			</data>
+			<key>hash2</key>
+			<data>
+			su+ryl6kvFbuqClxNwa1zQeIuCrKFTvUrd6bFXOTO08=
+			</data>
+		</dict>
+		<key>Roboto_medium.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			rbw73kJLz328OPFIAFyDGYJYkfI=
+			</data>
+			<key>hash2</key>
+			<data>
+			0Mj0SndLhJDO7imInNq8cjgfo1+2IWGaeP0oIR2QJBw=
 			</data>
 		</dict>
 		<key>SimpleLineIcons.ttf</key>
@@ -410,6 +444,17 @@
 			<key>hash2</key>
 			<data>
 			17EKHr4YMOWi8I9JA7moDiwZEsDdL3O5P88r+DIhZgI=
+			</data>
+		</dict>
+		<key>rubicon-icon-font.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			wWjJGa/hGKWVqUjSz9izW6v2ekU=
+			</data>
+			<key>hash2</key>
+			<data>
+			QidT7Dg0ix8cbNL7jAOGB1UJ8qZuZ1+mfLlrbeEAZhM=
 			</data>
 		</dict>
 	</dict>
