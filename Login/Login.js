@@ -18,6 +18,7 @@ class Login extends React.Component {
   }
 
   _handleOpenURL = () => {
+    console.log('hellp');
     SafariView.dismiss();
   };
 
@@ -28,11 +29,12 @@ class Login extends React.Component {
           url: 'http://localhost:8080/auth/instagram?provider=instagram',
           fromBottom: true
         })
-      )
+  )
       .catch(error => {
         // Fallback WebView code for iOS 8 and earlier
         console.log(error);
       });
+    console.log('logmein');
   };
 
   render() {

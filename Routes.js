@@ -1,7 +1,8 @@
 import React from 'react';
 import {createStackNavigator, createSwitchNavigator} from 'react-navigation';
 /* Remove deprication warning */
-import { YellowBox } from 'react-native'
+import {YellowBox} from 'react-native'
+
 YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated']);
 /* */
 import Home from './Login/Home';
@@ -25,8 +26,9 @@ const SignedIn = createStackNavigator({
     screen: Home,
     title: 'Home'
   },
-  Logout
-});
+  Logout,
+  },
+  {initialRouteName: 'Home'});
 
 export const createRootNavigator = (signedIn = false) => {
   return createSwitchNavigator(

@@ -7,19 +7,20 @@ import {
 } from 'react-native';
 import {getTokenFromCode} from '../services/UserService';
 import {setToken} from '../shared/AuthRoute';
-import SafariView from "react-native-safari-view";
+import SafariView from 'react-native-safari-view';
 
 class AuthUser extends Component {
 
   async componentDidMount() {
     const {navigation, getToken} = this.props;
     const code = navigation.getParam('code', '');
+    console.log(code);
     try {
       const res = await getToken(code);
       const {token} = res.payload.data;
       await setToken(token);
       // navigation.navigate('Home');
-      await SafariView.dismiss();
+      // await SafariView.dismiss();
     } catch (err) {
       console.log(err);
     }

@@ -24,6 +24,7 @@ class AuthRoute extends Component {
   async componentDidMount() {
     try {
       const token = await getToken();
+      console.log('token:::::::', token);
       if (!token) {
         this.setState({signedIn: false, checkedSignIn: true});
       } else {
