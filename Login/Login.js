@@ -28,8 +28,8 @@ class Login extends React.Component {
       console.log('token------------\n\r', token);
       console.log('res------------\n\r', res);
       await setToken(token);
+      await this.props.navigation.navigate('Home');
       await SafariView.dismiss();
-      this.props.navigation.navigate('Home');
     } catch (err) {
       console.log(err);
     }

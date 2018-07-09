@@ -4,8 +4,7 @@ import store from './store';
 import {StyleSheet, View} from 'react-native';
 import { Row, Grid } from "react-native-easy-grid";
 import {Container} from 'native-base';
-// import Routes from './Routes';
-import AuthRoute from './shared/AuthRoute';
+import Routes from './Routes';
 
 export default class App extends React.Component {
 
@@ -13,7 +12,7 @@ export default class App extends React.Component {
     return (
       <Provider store={store}>
         <Container style={styles.container}>
-            <AuthRoute />
+            <Routes />
         </Container>
       </Provider>
     );

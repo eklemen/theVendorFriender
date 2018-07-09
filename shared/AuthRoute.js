@@ -38,21 +38,38 @@ class AuthRoute extends Component {
     }
   }
 
-  // async componentDidUpdate(prevProps, prevState) {
-  //   console.log('prevProps------------\n\r', prevProps);
-  //   console.log('prevState------------\n\r', prevState);
-  //   try {
-  //
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // }
+  async componentDidUpdate(prevProps, prevState) {
+    console.log('prevProps------------\n\r', prevProps);
+    console.log('prevState------------\n\r', prevState);
+    const {signedIn, checkedSignIn} = this.state;
+    const {navigation} = this.props;
+    console.log(navigation);
+    // if(!signedIn) {
+    //   return
+    // }
+    // try {
+    //   const token = await getToken();
+    //   if (!token) {
+    //     console.log('NO tokennnnn------------\n\r');
+    //     await this.setState({signedIn: false, checkedSignIn: true});
+    //   } else {
+    //     const {user} = this.props;
+    //     axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+    //     await this.setState({signedIn: true, checkedSignIn: true});
+    //     if(!user.data) {
+    //       await this.props.getSelf();
+    //     }
+    //   }
+    // } catch (err) {
+    //   console.log(err);
+    // }
+  }
 
   render() {
     const {checkedSignIn, signedIn} = this.state;
-    if (!checkedSignIn) {
-      return null;
-    }
+    // if (!checkedSignIn) {
+    //   return null;
+    // }
 
     const Layout = createRootNavigator(signedIn);
     return <Layout/>;
