@@ -13,7 +13,7 @@ import Logout from './shared/Logout';
 const SignedOut = createStackNavigator({
     AuthUser: {
       screen: AuthUser,
-      path: 'auth/callback',
+      // path: 'auth/callback',
     },
     Login,
   },

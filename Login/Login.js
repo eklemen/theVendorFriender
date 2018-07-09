@@ -6,6 +6,7 @@ import {Row, Grid} from 'react-native-easy-grid';
 import SafariView from 'react-native-safari-view';
 import LinearGradient from 'react-native-linear-gradient';
 import {getTokenFromCode} from '../services/UserService';
+import {setToken} from "../shared/AuthRoute";
 
 class Login extends React.Component {
   componentDidMount() {
@@ -17,9 +18,21 @@ class Login extends React.Component {
     Linking.removeEventListener('url', this._handleOpenURL);
   }
 
-  _handleOpenURL = () => {
-    console.log('hellp');
-    SafariView.dismiss();
+  _handleOpenURL = async (e) => {
+    console.log('hellp', e);
+    const code = this.props.navigation.getParam('code', '');
+    console.log(code);
+    try {
+      const res = await this.props.getToken(code);
+      const {token} = res.payload.data;
+      console.log('token------------\n\r', token);
+      console.log('res------------\n\r', res);
+      await setToken(token);
+      await SafariView.dismiss();
+      this.props.navigation.navigate('Home');
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   _logMeIn = () => {

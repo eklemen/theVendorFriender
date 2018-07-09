@@ -26,25 +26,36 @@ class AuthRoute extends Component {
       const token = await getToken();
       console.log('token:::::::', token);
       if (!token) {
-        this.setState({signedIn: false, checkedSignIn: true});
+        console.log('NO token------------\n\r');
+        await this.setState({signedIn: false, checkedSignIn: true});
       } else {
         axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+        await this.setState({signedIn: true, checkedSignIn: true});
         await this.props.getSelf();
-        await this.setState({signedIn: true, checkedSignIn: true})
       }
     } catch (err) {
       console.log('err authroute------------\n\r', err);
     }
   }
 
+  // async componentDidUpdate(prevProps, prevState) {
+  //   console.log('prevProps------------\n\r', prevProps);
+  //   console.log('prevState------------\n\r', prevState);
+  //   try {
+  //
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
+
   render() {
-    const { checkedSignIn, signedIn } = this.state;
+    const {checkedSignIn, signedIn} = this.state;
     if (!checkedSignIn) {
       return null;
     }
 
     const Layout = createRootNavigator(signedIn);
-    return <Layout />;
+    return <Layout/>;
   }
 }
 
