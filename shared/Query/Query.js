@@ -1,7 +1,4 @@
 import axios from 'axios';
-import {getToken} from '../AuthRoute';
-
-// axios.defaults.headers.common['Authorization'] = 'Bearer ' + getToken();
 
 export const Query = (
   {

@@ -1,5 +1,5 @@
 import React from 'react';
-import {getToken} from '../shared/AuthRoute';
+import {AsyncStorage} from "react-native";
 
 export default function(ProtectedRoute) {
   class Authentication extends React.Component {
@@ -13,7 +13,6 @@ export default function(ProtectedRoute) {
       const { navigation } = this.props;
       try {
         const token = await getToken();
-        console.log('TOKEN++++++++++', token);
         if(!token) navigation.navigate('Login');
       } catch (err) {
         console.log('_checkToken err: ', err);
@@ -28,3 +27,8 @@ export default function(ProtectedRoute) {
 
   return Authentication;
 }
+
+export const setToken = (token) => AsyncStorage.setItem('@vendorToken', token);
+export const getToken = () => AsyncStorage.getItem('@vendorToken');
+
+export const onSignOut = () => AsyncStorage.removeItem('@vendorToken');
