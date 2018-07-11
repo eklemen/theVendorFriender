@@ -6,14 +6,14 @@ export default function(ProtectedRoute) {
     constructor(props) {
       super(props);
     }
-    componentDidMount() {
-      this._checkAuth();
+    async componentDidMount() {
+      await this._checkAuth();
     }
     _checkAuth = async () => {
       const { navigation } = this.props;
       try {
         const token = await getToken();
-        if(!token) navigation.navigate('Login');
+        if(!token) navigation.navigate('Logout');
       } catch (err) {
         console.log('_checkToken err: ', err);
       }

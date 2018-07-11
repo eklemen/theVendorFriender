@@ -14,7 +14,7 @@ export const getTokenFromCode = code => {
   const endpoint = `${api.getToken}?code=${code}`;
   return Query({
     endpoint,
-    name: 'User'
+    name: 'AuthToken'
   });
 };
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {StyleSheet, Linking, View, Dimensions} from 'react-native';
-import {Button, Content, Icon, Text} from 'native-base';
+import {StyleSheet, Linking, Dimensions} from 'react-native';
+import {Button, Icon, Text} from 'native-base';
 import {Row, Grid} from 'react-native-easy-grid';
 import SafariView from 'react-native-safari-view';
 import LinearGradient from 'react-native-linear-gradient';
@@ -9,6 +9,10 @@ import {getTokenFromCode} from '../services/UserService';
 import {setToken} from "../shared/AuthRoute";
 
 class Login extends React.Component {
+  static navigationOptions = {
+    title: null,
+  };
+
   componentDidMount() {
     console.log('login');
     Linking.addEventListener('url', this._handleOpenURL);
@@ -18,17 +22,14 @@ class Login extends React.Component {
     Linking.removeEventListener('url', this._handleOpenURL);
   }
 
-  _handleOpenURL = async (e) => {
-    console.log('hellp', e);
-    const code = this.props.navigation.getParam('code', '');
-    console.log(code);
+  _handleOpenURL = async () => {
+    const {navigation, getToken} = this.props;
+    const code = navigation.getParam('code', '');
     try {
-      const res = await this.props.getToken(code);
+      const res = await getToken(code);
       const {token} = res.payload.data;
-      console.log('token------------\n\r', token);
-      console.log('res------------\n\r', res);
       await setToken(token);
-      await this.props.navigation.navigate('Home');
+      await navigation.navigate('Dashboard');
       await SafariView.dismiss();
     } catch (err) {
       console.log(err);
@@ -47,7 +48,6 @@ class Login extends React.Component {
         // Fallback WebView code for iOS 8 and earlier
         console.log(error);
       });
-    console.log('logmein');
   };
 
   render() {
