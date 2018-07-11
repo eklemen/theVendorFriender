@@ -3,9 +3,6 @@ import {connect} from 'compdata';
 import {View, Text, Button} from 'react-native';
 import {Spinner} from 'native-base';
 class Dashboard extends React.Component {
-  // static navigationOptions = {
-  //   headerTitle: 'Dashboard',
-  // };
   // componentDidMount() {
   //
   // }
@@ -30,10 +27,5 @@ const mapStateToProps = state => ({
 
 const actions = {};
 
-const connected = connect(mapStateToProps, actions)(Dashboard, 'Dashboard');
-
-connected.navigationOptions = () => ({
-  title: 'whatever'
-});
-
-export default connected;
+// export default connect(mapStateToProps, actions)(Dashboard, 'Dashboard');
+export default Dashboard;

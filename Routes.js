@@ -13,14 +13,25 @@ import Dashboard from './Dashboard/Dashboard';
 
 export default createStackNavigator(
   {
-    Login,
+    Login: {
+      screen: Login,
+      navigationOptions: {
+        header: null,
+        headerLeft: null,
+      },
+    },
     Home: {
       screen: requireAuth(Home),
       title: 'Home',
+      navigationOptions: {
+        title: 'Home',
+      },
     },
     Dashboard: {
       screen: requireAuth(Dashboard),
-      title: 'Dashboard',
+      navigationOptions: {
+        title: 'Dashboard',
+      },
     },
     Logout,
   },
@@ -28,3 +39,4 @@ export default createStackNavigator(
     initialRouteName: getToken() ? 'Dashboard' : 'Login',
   }
 );
+

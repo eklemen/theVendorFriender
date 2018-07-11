@@ -10,7 +10,8 @@ import {setToken} from "../shared/AuthRoute";
 
 class Login extends React.Component {
   static navigationOptions = {
-    title: null,
+    header: false,
+    headerLeft: null,
   };
 
   componentDidMount() {
