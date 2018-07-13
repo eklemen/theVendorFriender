@@ -1,6 +1,5 @@
 import {Query} from '../shared/Query/Query';
 import api from './endpoints';
-import axios from 'axios';
 
 export function getMyEventsList() {
   const endpoint = api.selfEventList;

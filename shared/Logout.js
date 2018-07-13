@@ -1,5 +1,6 @@
 import React from 'react';
 import {onSignOut} from './AuthRoute';
+import {Spinner} from 'native-base';
 
 const Logout = ({navigation}) => {
   Promise.resolve(onSignOut()).then(() => {
@@ -7,7 +8,7 @@ const Logout = ({navigation}) => {
   }, () => {
     navigation.navigate('Login');
   });
-  return null;
+  return <Spinner />;
 };
 
 export default Logout;

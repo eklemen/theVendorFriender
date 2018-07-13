@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+// axios.defaults.headers.common['Authorization'] = 'Bearer ' + getToken();
+
 export const Query = (
   {
     name, // required

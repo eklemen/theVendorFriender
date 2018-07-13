@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {StyleSheet, Linking, Dimensions} from 'react-native';
 import {Button, Icon, Text} from 'native-base';
 import {Row, Grid} from 'react-native-easy-grid';
+import axios from 'axios';
 import SafariView from 'react-native-safari-view';
 import LinearGradient from 'react-native-linear-gradient';
 import {getTokenFromCode} from '../services/UserService';
@@ -29,6 +30,7 @@ class Login extends React.Component {
     try {
       const res = await getToken(code);
       const {token} = res.payload.data;
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
       await setToken(token);
       await navigation.navigate('Dashboard');
       await SafariView.dismiss();
