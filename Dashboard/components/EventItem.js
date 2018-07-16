@@ -1,20 +1,30 @@
 import React from 'react';
-import {Container, Header, Content, List, ListItem, Thumbnail, Text, Left, Body, Right, Button} from 'native-base';
+import {
+  ListItem, Text, Body, Right, Button
+} from 'native-base';
+import {connect} from 'compdata';
+import format from 'date-fns/format';
 
-const EventItem = () => {
+const EventItem = (
+  {
+    event, event: {title, eventDate, venue}, setData, navigation
+  }) => {
+  _selectEvent = async () => {
+    await setData({event});
+    navigation.navigate('EventDetail');
+  };
   return (
-    <ListItem>
+    <ListItem onPress={this._selectEvent}>
       <Body>
-      <Text>Sankhadeep</Text>
-      <Text note numberOfLines={1}>Its time to build a difference . .</Text>
+      <Text>{venue}</Text>
+      <Text note numberOfLines={1}>{title}</Text>
       </Body>
       <Right>
-        <Button transparent>
-          <Text>View</Text>
-        </Button>
+        <Text>{format(eventDate, 'MMM Do')}</Text>
+        <Text note>{format(eventDate, 'ddd')}</Text>
       </Right>
     </ListItem>
   );
 };
 
-export default EventItem;
+export default connect(null)(EventItem, 'EventDetail');

@@ -1,15 +1,11 @@
 import React, {Component} from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-} from 'react-native';
+import {View, Text} from 'native-base';
 import {Spinner} from 'native-base';
 
 export default class AsyncSpinner extends Component {
 
   render() {
-    const {children, dataObj} = this.props;
+    const {children, dataObj, ...rest} = this.props;
     if (!dataObj) return null;
     if (dataObj.fetching) return (<Spinner/>);
     if (dataObj.error) {
@@ -17,7 +13,7 @@ export default class AsyncSpinner extends Component {
     }
     if (dataObj.fetched && dataObj.data) {
       return (
-        <View style={styles.container}>
+        <View style={{...rest}}>
           {...children}
         </View>
       );
@@ -25,10 +21,3 @@ export default class AsyncSpinner extends Component {
     return null;
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

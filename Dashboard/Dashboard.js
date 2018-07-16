@@ -1,8 +1,7 @@
 import React from 'react';
 import {connect} from 'compdata';
-import {View, Text, Button, StyleSheet} from 'react-native';
 import format from 'date-fns/format';
-import {List, Content} from 'native-base';
+import {View, Text, Button, List, H3} from 'native-base';
 import {AsyncSpinner} from '../shared';
 import {layout} from '../shared/styles';
 import {getMyEventsList} from '../services/UserService';
@@ -14,20 +13,26 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    const {myEvents} = this.props;
+    const {myEvents, navigation} = this.props;
     const today = format(new Date(), 'MM/DD/YYYY');
     return (
-      <View style={{marginTop: 50, ...layout.Col, ...layout.withPad}}>
-        <Text>My Dashboard</Text>
-        <Text>Date: {today}</Text>
+      <View>
+        <View style={[layout.withPad, layout.align.center]}>
+          <Text>My Dashboard</Text>
+          <Text>Date: {today}</Text>
+          <H3>My Events</H3>
+        </View>
         <AsyncSpinner dataObj={myEvents}>
-          <View  style={{...layout.Col, ...layout.withPad}}>
-            <Text>My Events</Text>
-              <List>
-                {myEvents && myEvents.data && myEvents.data.map((e, i) => (
-                  <EventItem key={i}/>
-                ))}
-              </List>
+          <View>
+            <List>
+              {myEvents && myEvents.data && myEvents.data.map(({event}) => (
+                <EventItem
+                  key={event.uuid}
+                  event={event}
+                  navigation={navigation}
+                />
+              ))}
+            </List>
           </View>
         </AsyncSpinner>
         <Button
@@ -39,17 +44,6 @@ class Dashboard extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  flexRow: {
-    display: 'flex',
-    flexDirection: 'row'
-  },
-  flexCol: {
-    display: 'flex',
-    flexDirection: 'column'
-  }
-});
 
 const mapStateToProps = state => ({
   user: state.Queries.User,

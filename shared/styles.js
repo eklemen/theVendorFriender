@@ -1,4 +1,4 @@
-import {StyleSheet, Dimensions} from 'react-native';
+import {Dimensions} from 'react-native';
 
 export const layout = {
   Row: {
@@ -18,10 +18,14 @@ export const layout = {
     },
     end: {
       alignItems: 'flex-end'
-    }
+    },
+    selfStart: {alignSelf: 'start'},
+    selfEnd: {alignSelf: 'end'},
+    selfCenter: {alignSelf: 'center'}
   },
   withPad: {
-    width: Dimensions.get('window').width * 0.9
+    width: Dimensions.get('window').width * 0.9,
+    alignSelf: 'center'
   },
   fullWidth: {
     width: Dimensions.get('window').width
