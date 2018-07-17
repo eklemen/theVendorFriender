@@ -36,7 +36,7 @@ export default function(ProtectedRoute) {
 
     render() {
       return (
-        <AsyncSpinner dataObj={this.props.user}>
+        <AsyncSpinner waitFor={this.props.user}>
           <ProtectedRoute { ...this.props } />
         </AsyncSpinner>
       );

@@ -11,6 +11,7 @@ export const Query = (
     headers = {},
     method = 'get',
     saveToStore = true,
+    hotSwap,
     ...rest
   }
 ) => {
@@ -18,7 +19,14 @@ export const Query = (
     if (typeof name !== 'string') {
       throw new Error('Must provide a `name` for this query.');
     }
-    dispatch({type: `QUERY_PENDING_${name}`, payload: {name}});
+    if (hotSwap) {
+      dispatch({
+        type: `QUERY_PENDING_${name}_UPDATE`,
+        payload: {name}
+      })
+    } else {
+      dispatch({type: `QUERY_PENDING_${name}`, payload: {name}});
+    }
     return axios({
       method: method,
       url: endpoint,

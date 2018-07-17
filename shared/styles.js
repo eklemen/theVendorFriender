@@ -1,6 +1,14 @@
 import {Dimensions} from 'react-native';
 
 export const layout = {
+  centerPad: {
+    width: Dimensions.get('window').width * 0.9,
+    alignSelf: 'center',
+    alignItems: 'center'
+  },
+  marTop: {
+    marginTop: 20
+  },
   Row: {
     display: 'flex',
     flexDirection: 'row'

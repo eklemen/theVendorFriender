@@ -5,13 +5,14 @@ import {Spinner} from 'native-base';
 export default class AsyncSpinner extends Component {
 
   render() {
-    const {children, dataObj, ...rest} = this.props;
-    if (!dataObj) return null;
-    if (dataObj.fetching) return (<Spinner/>);
-    if (dataObj.error) {
+    const {children, waitFor, ...rest} = this.props;
+    if (typeof waitFor)
+    if (!waitFor) return null;
+    if (waitFor.fetching) return (<Spinner/>);
+    if (waitFor.error) {
       return (<Text>Something went wrong...</Text>);
     }
-    if (dataObj.fetched && dataObj.data) {
+    if (waitFor.fetched && waitFor.data) {
       return (
         <View style={{...rest}}>
           {...children}
