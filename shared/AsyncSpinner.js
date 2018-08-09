@@ -6,7 +6,17 @@ export default class AsyncSpinner extends Component {
 
   render() {
     const {children, waitFor, ...rest} = this.props;
-    if (typeof waitFor)
+    if (Array.isArray(waitFor)) {
+      if (!waitFor.length) return null;
+      const checkFetch = (s) => s.fetching;
+      if (waitFor.some(checkFetch)) return (<Spinner/>);
+      const checkErr = (s) => !!s.error;
+      if (waitFor.some(checkErr)) {
+        return (<Text>Something went wrong...</Text>);
+      }
+      const allGood = (s) => s.fetched && s.data;
+      if (allGood) {console.log('allgood')}
+    }
     if (!waitFor) return null;
     if (waitFor.fetching) return (<Spinner/>);
     if (waitFor.error) {

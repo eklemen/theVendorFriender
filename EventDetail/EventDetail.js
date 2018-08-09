@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, H3} from 'native-base';
+import {View, Text, H3, List} from 'native-base';
 import {connect} from 'compdata';
 import {layout} from '../shared/styles';
 import {getEventDetails} from '../services/EventsService';
@@ -16,22 +16,36 @@ class EventDetail extends Component {
   render() {
     const {event, eventDetails} = this.props;
     if (!event) return null;
-    console.log('eventDetails', eventDetails);
+
+    let attendees = [];
+    let host = {};
+    if (eventDetails && eventDetails.data) {
+      eventDetails.data.attendees.forEach(a => {
+        if (a.memberRole === 'client') {
+          host = a;
+        } else {
+          attendees.push(a);
+        }
+      })
+    }
+
     return (
       <View style={[layout.centerPad, layout.marTop]}>
         <Text>Event details for {event.title}</Text>
         <Text>At {event.venue}</Text>
         <AsyncSpinner waitFor={eventDetails}>
-          <View>
+          <View style={[layout.withPad]}>
             <H3>Event Attendees</H3>
-            {
-              eventDetails && eventDetails.data
-              && eventDetails.data.attendees.map(e => {
-                return (
-                  <VendorCard event={e}/>
-                )
-              })
-            }
+            <List>
+              <VendorCard attendee={host} isHost eventId={event.uuid}/>
+              {
+                attendees.map(a => {
+                  return (
+                    <VendorCard attendee={a} eventId={event.uuid}/>
+                  )
+                })
+              }
+            </List>
           </View>
         </AsyncSpinner>
       </View>
@@ -41,7 +55,8 @@ class EventDetail extends Component {
 
 const mapStateToProps = state => ({
   event: state.CompData.EventDetail.event,
-  eventDetails: state.Queries.EventDetails
+  eventDetails: state.Queries.EventDetails,
+  myContacts: state.Queries.MyContacts,
 });
 
 const actions = {

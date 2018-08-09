@@ -4,12 +4,14 @@ import format from 'date-fns/format';
 import {View, Text, Button, List, H3} from 'native-base';
 import {AsyncSpinner} from '../shared';
 import {layout} from '../shared/styles';
-import {getMyEventsList} from '../services/UserService';
+import {getMyEventsList, getOwnContacts} from '../services/UserService';
 import {EventItem} from './components';
 
 class Dashboard extends React.Component {
   componentDidMount() {
-    this.props.getMyEventsList()
+    const {getMyEventsList, getOwnContacts, user} = this.props;
+    getMyEventsList();
+    getOwnContacts(user.data.uuid);
   }
 
   render() {
@@ -51,7 +53,8 @@ const mapStateToProps = state => ({
 });
 
 const actions = {
-  getMyEventsList
+  getMyEventsList,
+  getOwnContacts
 };
 
 // export default connect(mapStateToProps, actions)(Dashboard, 'Dashboard');

@@ -25,10 +25,19 @@ export const getSelf = () => {
   })
 };
 
+export const getOwnContacts = (uuid) => {
+  const endpoint = api.userContacts(uuid);
+  return Query({
+    endpoint,
+    name: 'MyContacts'
+  });
+};
+
 export function addContact(uuid) {
   const endpoint = api.userContacts(uuid);
   return Query({
     endpoint,
+    hotSwap: true,
     name: 'Contacts',
     method: 'post'
   })
