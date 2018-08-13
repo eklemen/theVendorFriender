@@ -33,7 +33,7 @@ export const getOwnContacts = (uuid) => {
   });
 };
 
-export function addContact(uuid) {
+export const addContact = (uuid) => {
   const endpoint = api.userContacts(uuid);
   return Query({
     endpoint,
@@ -41,4 +41,4 @@ export function addContact(uuid) {
     name: 'Contacts',
     method: 'post'
   })
-}
+};

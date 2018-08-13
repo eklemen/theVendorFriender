@@ -27,8 +27,8 @@ export const layout = {
     end: {
       alignItems: 'flex-end'
     },
-    selfStart: {alignSelf: 'start'},
-    selfEnd: {alignSelf: 'end'},
+    selfStart: {alignSelf: 'flex-start'},
+    selfEnd: {alignSelf: 'flex-end'},
     selfCenter: {alignSelf: 'center'}
   },
   withPad: {

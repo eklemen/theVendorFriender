@@ -1,20 +1,41 @@
 import React, {Component} from 'react';
-import {View, Text, H3, List} from 'native-base';
+import {Text, H3, List, Card, CardItem, Body, Button} from 'native-base';
+import {View} from 'react-native';
+import Modal from 'react-native-modal';
 import {connect} from 'compdata';
 import {layout} from '../shared/styles';
 import {getEventDetails} from '../services/EventsService';
 import {AsyncSpinner} from '../shared';
-import {VendorCard} from './components';
+import {VendorCard, VendorActionSheet} from './components';
 
 class EventDetail extends Component {
+  constructor() {
+      super();
+      this.state = {
+        showModal: false,
+        userId: null
+      };
+  }
   componentDidMount() {
     const {event, navigation, getEventDetails} = this.props;
     if (!event) navigation.goBack();
     getEventDetails(event.uuid);
   }
 
+  _selectUser = userId => () => {
+    this.setState({
+      showModal: true,
+      userId
+    });
+  };
+
+  _closeModal = () => {
+    this.setState({showModal: false, userId: null})
+  };
+
   render() {
     const {event, eventDetails} = this.props;
+    const {showModal, userId} = this.state;
     if (!event) return null;
 
     let attendees = [];
@@ -37,17 +58,34 @@ class EventDetail extends Component {
           <View style={[layout.withPad]}>
             <H3>Event Attendees</H3>
             <List>
-              <VendorCard attendee={host} isHost eventId={event.uuid}/>
+              { host.user &&
+                <VendorCard
+                  attendee={host}
+                  isHost
+                  eventId={event.uuid}
+                  handleSelect={this._selectUser(host.user.uuid)}
+                />
+              }
               {
                 attendees.map(a => {
                   return (
-                    <VendorCard attendee={a} eventId={event.uuid}/>
+                    <VendorCard
+                      attendee={a}
+                      eventId={event.uuid}
+                      key={a.user.uuid}
+                      handleSelect={this._selectUser(a.user.uuid)}
+                    />
                   )
                 })
               }
             </List>
           </View>
         </AsyncSpinner>
+        <VendorActionSheet
+          isVisible={showModal}
+          closeModal={this._closeModal}
+          selectedUserId={userId}
+        />
       </View>
     );
   }
