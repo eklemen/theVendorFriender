@@ -38,7 +38,7 @@ export const addContact = (uuid) => {
   return Query({
     endpoint,
     hotSwap: true,
-    name: 'Contacts',
+    name: 'MyContacts',
     method: 'post'
   })
 };

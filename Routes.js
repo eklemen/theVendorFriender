@@ -1,5 +1,5 @@
 import React from 'react';
-import {createStackNavigator} from 'react-navigation';
+import {createStackNavigator, createBottomTabNavigator} from 'react-navigation';
 /* Remove deprication warning */
 import {YellowBox} from 'react-native'
 
@@ -12,6 +12,22 @@ import requireAuth, {getToken} from './shared/Auth/requireAuth';
 import Dashboard from './Dashboard/Dashboard';
 import EventDetail from './EventDetail/EventDetail';
 
+const TabNav = createBottomTabNavigator({
+  Dashboard: {
+    screen: requireAuth(Dashboard),
+    navigationOptions: {
+      title: 'Dashboard',
+    },
+  },
+  Home: {
+    screen: requireAuth(Home),
+    title: 'Home',
+    navigationOptions: {
+      title: 'Home',
+    },
+  },
+});
+
 export default createStackNavigator(
   {
     Login: {
@@ -21,18 +37,11 @@ export default createStackNavigator(
         headerLeft: null,
       },
     },
-    Home: {
-      screen: requireAuth(Home),
-      title: 'Home',
-      navigationOptions: {
-        title: 'Home',
-      },
-    },
     Dashboard: {
-      screen: requireAuth(Dashboard),
-      navigationOptions: {
-        title: 'Dashboard',
-      },
+      screen: TabNav,
+    },
+    Home: {
+      screen: TabNav,
     },
     EventDetail: {
       screen: requireAuth(EventDetail),

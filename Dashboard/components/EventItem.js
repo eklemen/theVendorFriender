@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  ListItem, Text, Body, Right, Button
+  ListItem, Text, Body, Right
 } from 'native-base';
 import {connect} from 'compdata';
 import format from 'date-fns/format';
@@ -9,12 +9,12 @@ const EventItem = (
   {
     event, event: {title, eventDate, venue}, setData, navigation
   }) => {
-  _selectEvent = async () => {
+  const _selectEvent = async () => {
     await setData({event});
     navigation.navigate('EventDetail');
   };
   return (
-    <ListItem onPress={this._selectEvent}>
+    <ListItem onPress={_selectEvent}>
       <Body>
       <Text>{venue}</Text>
       <Text note numberOfLines={1}>{title}</Text>

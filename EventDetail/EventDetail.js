@@ -13,7 +13,7 @@ class EventDetail extends Component {
       super();
       this.state = {
         showModal: false,
-        userId: null
+        selectedUser: {user: {}}
       };
   }
   componentDidMount() {
@@ -22,20 +22,20 @@ class EventDetail extends Component {
     getEventDetails(event.uuid);
   }
 
-  _selectUser = userId => () => {
+  _selectUser = selectedUser => () => {
     this.setState({
       showModal: true,
-      userId
+      selectedUser
     });
   };
 
   _closeModal = () => {
-    this.setState({showModal: false, userId: null})
+    this.setState({showModal: false, selectedUser: {user: {}}})
   };
 
   render() {
     const {event, eventDetails} = this.props;
-    const {showModal, userId} = this.state;
+    const {showModal, selectedUser} = this.state;
     if (!event) return null;
 
     let attendees = [];
@@ -63,7 +63,7 @@ class EventDetail extends Component {
                   attendee={host}
                   isHost
                   eventId={event.uuid}
-                  handleSelect={this._selectUser(host.user.uuid)}
+                  handleSelect={this._selectUser(host)}
                 />
               }
               {
@@ -73,7 +73,7 @@ class EventDetail extends Component {
                       attendee={a}
                       eventId={event.uuid}
                       key={a.user.uuid}
-                      handleSelect={this._selectUser(a.user.uuid)}
+                      handleSelect={this._selectUser(a)}
                     />
                   )
                 })
@@ -84,7 +84,8 @@ class EventDetail extends Component {
         <VendorActionSheet
           isVisible={showModal}
           closeModal={this._closeModal}
-          selectedUserId={userId}
+          event={event}
+          selectedUser={selectedUser}
         />
       </View>
     );

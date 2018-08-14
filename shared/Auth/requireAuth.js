@@ -38,6 +38,7 @@ export default function(ProtectedRoute) {
       return (
         <AsyncSpinner waitFor={this.props.user}>
           <ProtectedRoute { ...this.props } />
+
         </AsyncSpinner>
       );
     }

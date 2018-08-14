@@ -8,39 +8,6 @@ import {reportUser} from '../../services/EventsService';
 import {addContact} from '../../services/UserService';
 
 class VendorCard extends Component {
-  _selectUser = memberId => () => {
-    const {
-      reportUser,
-      addContact,
-      attendee:{user},
-      eventId
-    } = this.props;
-
-    // if('thisFunc' === 0) {
-    //   addContact(user.uuid).then(res => {
-    //     const success = res.type === 'QUERY_FULFILLED_Contacts';
-    //     const msg = success
-    //       ? `${user.igUsername} was added to Contacts`
-    //       : 'Something went wrong.';
-    //     const toastType = success ? 'success' : 'danger';
-    //     Toast.show({
-    //       text: msg,
-    //       buttonText: 'x',
-    //       type: toastType,
-    //       duration: 2000
-    //     })
-    //   });
-    // }
-    // if('thisFunc' === 2) {
-    //   reportUser(eventId, user.uuid).then(res => {
-    //     Toast.show({
-    //       text: res.payload.data.message || 'Something went wrong.',
-    //       buttonText: 'x',
-    //       duration: 2000
-    //     })
-    //   });
-    // }
-  };
 
   render() {
     const {attendee:{user}, attendee, isHost, handleSelect} = this.props;

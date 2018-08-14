@@ -5,6 +5,7 @@ import Modal from 'react-native-modal';
 import {connect} from 'react-redux';
 import {layout} from '../../shared/styles';
 import {addContact} from '../../services/UserService';
+import {reportUser} from '../../services/EventsService';
 
 class VendorActionSheet extends Component {
   _addToContacts = (uuid) => async () => {
@@ -12,7 +13,7 @@ class VendorActionSheet extends Component {
     try {
       await addContact(uuid);
       Toast.show({
-        text: 'Successfully added to contacts',
+        text: 'Successfully added to contacts.',
         buttonText: 'x',
         type: 'success',
         duration: 2000
@@ -20,29 +21,47 @@ class VendorActionSheet extends Component {
       closeModal();
     } catch (err) {
       Toast.show({
-        text: 'Successfully added to contacts',
+        text: 'Something went wrong, try again later.',
         buttonText: 'x',
         type: 'danger',
-        duration: 2000
-      })
+        duration: 2500
+      });
+      closeModal();
     }
   };
 
-  _copyIGUsername = () => {
-    Clipboard.setString('hello world');
+  _copyIGUsername = async () => {
+    const {selectedUser, closeModal} = this.props;
+    await Clipboard.setString(`@${selectedUser.user.igUsername}`);
+    Toast.show({
+      text: 'Copied to clipboard.',
+      buttonText: 'x',
+      type: 'success',
+      duration: 1500
+    });
+    closeModal();
+  };
+
+  _reportUser = async () => {
+    const {reportUser, closeModal, event, selectedUser} = this.props;
+    await reportUser(event.uuid, selectedUser.user.uuid);
+    Toast.show({
+      text: 'User has been reported.',
+      buttonText: 'x',
+      duration: 2500
+    });
+    closeModal();
   };
 
   render() {
-    const {isVisible,
+    const {
+      isVisible,
       closeModal,
-      selectedUserId,
+      selectedUser,
       myContacts,
       selfId
     } = this.props;
-    const alreadyContact = myContacts.some(c => (c.uuid === selectedUserId));
-    console.log('myContacts------------\n\r', myContacts);
-    console.log('selfId------------\n\r', selfId);
-    console.log('selectedUserId------------\n\r', selectedUserId);
+    const alreadyContact = myContacts.some(c => (c.uuid === selectedUser.user.uuid));
     return (
       <Modal
         isVisible={isVisible}
@@ -54,19 +73,23 @@ class VendorActionSheet extends Component {
             <Button
               block
               info
-              disabled={selectedUserId === selfId || alreadyContact}
-              onPress={this._addToContacts(selectedUserId)}
+              disabled={selectedUser.user.uuid === selfId || alreadyContact}
+              onPress={this._addToContacts(selectedUser)}
               style={{marginBottom: 10}}>
               {
-                alreadyContact
+                selectedUser.user.uuid === selfId || alreadyContact
                   ? <Text> Already a Contact</Text>
                   : <Text>Add to Contacts</Text>
               }
             </Button>
-            <Button block info style={{marginBottom: 10}}>
+            <Button
+              block
+              info
+              onPress={this._copyIGUsername}
+              style={{marginBottom: 10}}>
               <Text>Copy Instagram Username</Text>
             </Button>
-            <Button block danger style={{marginBottom: 10}}>
+            <Button block danger onPress={this._reportUser} style={{marginBottom: 10}}>
               <Text>Report User</Text>
             </Button>
             <Button
@@ -90,7 +113,8 @@ const mapStateToProps = state => ({
 });
 
 const actions = {
-  addContact
+  addContact,
+  reportUser
 };
 
 export default connect(
