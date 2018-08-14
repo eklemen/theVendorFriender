@@ -32,7 +32,7 @@ class Login extends React.Component {
       const {token} = res.payload.data;
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
       await setToken(token);
-      await navigation.navigate('Dashboard');
+      await navigation.navigate('Tabs');
       await SafariView.dismiss();
     } catch (err) {
       console.log(err);

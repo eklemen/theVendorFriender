@@ -12,13 +12,23 @@ import requireAuth, {getToken} from './shared/Auth/requireAuth';
 import Dashboard from './Dashboard/Dashboard';
 import EventDetail from './EventDetail/EventDetail';
 
-const TabNav = createBottomTabNavigator({
-  Dashboard: {
+const DashboardNav = createStackNavigator({
+  DashboardHome: {
     screen: requireAuth(Dashboard),
     navigationOptions: {
       title: 'Dashboard',
     },
   },
+  EventDetail: {
+    screen: requireAuth(EventDetail),
+    navigationOptions: {
+      title: 'Event Details',
+    },
+  },
+});
+
+const TabNav = createBottomTabNavigator({
+  Dashboard: DashboardNav,
   Home: {
     screen: requireAuth(Home),
     title: 'Home',
@@ -26,6 +36,8 @@ const TabNav = createBottomTabNavigator({
       title: 'Home',
     },
   },
+},{
+  initialRouteName: 'Dashboard',
 });
 
 export default createStackNavigator(
@@ -37,22 +49,17 @@ export default createStackNavigator(
         headerLeft: null,
       },
     },
-    Dashboard: {
+    Tabs: {
       screen: TabNav,
-    },
-    Home: {
-      screen: TabNav,
-    },
-    EventDetail: {
-      screen: requireAuth(EventDetail),
       navigationOptions: {
-        title: 'EventDetail',
+        header: null,
+        headerLeft: null,
       },
     },
     Logout,
   },
   {
-    initialRouteName: getToken() ? 'Dashboard' : 'Login',
+    initialRouteName: getToken() ? 'Tabs' : 'Login',
   }
 );
 

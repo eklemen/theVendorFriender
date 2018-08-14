@@ -18,7 +18,7 @@ class Dashboard extends React.Component {
     const {myEvents, navigation} = this.props;
     const today = format(new Date(), 'MM/DD/YYYY');
     return (
-      <View>
+      <View style={[layout.marTop]}>
         <View style={[layout.centerPad]}>
           <Text>My Dashboard</Text>
           <Text>Date: {today}</Text>
